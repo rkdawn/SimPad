@@ -1,16 +1,15 @@
-SimPad 1.0.0 / 模拟平板
+SimPad 1.0.0
 GPL-3.0-only. The complete GPL, Apache-2.0 and LGPL license texts accompany this APK.
 
 This module simulates a tablet identity inside WeChat, DingTalk and WeCom on a phone.
 It does not change the global device model or claim support for every target app version.
-The user-validated pre-startup, original-call and chat exception behavior is retained.
+Startup ordering, original-call semantics and chat compatibility are preserved.
 The standalone B hook and module-initiated shared result-cache writes remain removed.
 Unchanged read-only installed APK digests may be reused after metadata checks.
 Module upgrades still recheck content; unchanged code/rules may reuse the method plan.
 The normal package, active-code, loader and before/after input checks are preserved.
-The main build uses API34+ StackWalker for chat-package classification, falling back to
-Thread stack traces on older systems or ordinary/linkage failure. The legacy-chat build
-uses Thread stack traces throughout. No per-call chat result, timing or logging is cached.
+API34+ StackWalker classifies chat-package calls, using Thread stack traces on
+older systems or ordinary/linkage failure. No per-call chat result or timing is cached.
 
 Thanks to the projects and maintainers whose work informed this implementation:
 Houvven/I-Am-Pad, GPL-3.0:
@@ -30,5 +29,4 @@ Runtime libraries: DexKit 2.1.0 (Apache-2.0 and LGPL-3.0 Core), FlatBuffers 23.5
 Rikka cxx 1.2.0, Kotlin stdlib 2.2.10 and JetBrains annotations 13.0 (Apache-2.0).
 Modern API101 is provided by the framework and is not bundled.
 Target APKs, private logs, account data, signing keys and test fixtures are not bundled.
-Historical package identity io.github.rkdawn.padbridge and internal namespaces/cache
-keys are intentionally retained to preserve existing installations and cache compatibility.
+Application identity and module namespace: io.github.rkdawn.simpad.

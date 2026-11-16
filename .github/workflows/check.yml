@@ -15,7 +15,7 @@ env:
   TEMP: ${{ github.workspace }}/tmp
   TMP: ${{ github.workspace }}/tmp
   TMPDIR: ${{ github.workspace }}/tmp
-  IMPAD_SIGNING_STORE: ${{ github.workspace }}/.cache/android-user/debug.keystore
+  SIMPAD_SIGNING_STORE: ${{ github.workspace }}/.cache/android-user/debug.keystore
 
 jobs:
   checks:

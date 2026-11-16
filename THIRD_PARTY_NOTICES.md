@@ -17,7 +17,7 @@ SimPad 采用 **GPL-3.0-only**，保留根目录 `LICENSE` 全文及APK中的许
 
 现役规则选择、代码身份、缓存职责、启动协调和测试为轻量维护实现。独立B Hook和模块主动共享缓存写入已取消；不将旧文档的内部缓存修正描述为现役业务。
 
-内部原安装身份、源码命名空间和缓存键保留用于覆盖及配置兼容，不代表新品牌仍对外叫PadBridge。
+当前安装身份与源码命名空间统一为 `io.github.rkdawn.simpad`。
 
 ## 实际运行依赖
 
@@ -36,4 +36,4 @@ SimPad 采用 **GPL-3.0-only**，保留根目录 `LICENSE` 全文及APK中的许
 - https://github.com/LuckyPray/DexKit/releases/tag/2.1.0
 - https://repo.maven.apache.org/maven2/org/luckypray/dexkit/2.1.0/
 
-本次没有升级运行库或新增依赖。分发不包含目标应用APK、私有日志、账号数据、签名私钥或编译进APK的测试fixture。正式及legacy-chat回退的对应源码均在发布源码包提供。
+本次没有升级运行库或新增依赖。分发不包含目标应用APK、私有日志、账号数据、签名私钥或编译进APK的测试fixture。正式源码在仓库和发布源码包中提供；公开发行只保留一个正式安装APK。
