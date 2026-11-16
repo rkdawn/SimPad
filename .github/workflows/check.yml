@@ -1,0 +1,54 @@
+name: Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GRADLE_USER_HOME: ${{ github.workspace }}/.cache/gradle
+  ANDROID_USER_HOME: ${{ github.workspace }}/.cache/android-user
+  TEMP: ${{ github.workspace }}/tmp
+  TMP: ${{ github.workspace }}/tmp
+  TMPDIR: ${{ github.workspace }}/tmp
+  IMPAD_SIGNING_STORE: ${{ github.workspace }}/.cache/android-user/debug.keystore
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Prepare project-local caches and temporary files
+        run: mkdir -p "$GRADLE_USER_HOME" "$ANDROID_USER_HOME" "$TMPDIR"
+      - uses: actions/checkout@v4
+      - name: Restore project-local temporary directories after checkout
+        run: mkdir -p "$GRADLE_USER_HOME" "$ANDROID_USER_HOME" "$TMPDIR"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/cache@v4
+        with:
+          path: ${{ env.GRADLE_USER_HOME }}
+          key: ${{ runner.os }}-simpad-gradle-${{ hashFiles('**/*.gradle.kts', 'gradle/libs.versions.toml', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-simpad-gradle-
+      - name: Ensure declared Android build tools
+        run: |
+          sdkmanager --install "platforms;android-36" "build-tools;36.0.0" "ndk;28.2.13676358"
+      - name: Unit tests and release lint
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon -Djava.io.tmpdir="$TMPDIR" :app:testDebugUnitTest :app:lintRelease
+      - name: Upload check reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: check-reports
+          path: |
+            app/build/test-results/testDebugUnitTest
+            app/build/reports/tests/testDebugUnitTest
+            app/build/reports/lint-results-release.*

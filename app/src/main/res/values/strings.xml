@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">模拟平板</string>
+    <string name="module_desc">在手机上为微信、钉钉、企业微信模拟平板身份。需支持 modern API 101 的框架。</string>
+</resources>

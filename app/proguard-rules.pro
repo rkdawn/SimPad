@@ -1,0 +1,3 @@
+-dontwarn java.lang.reflect.AnnotatedType
+-keep class com.houvven.impad.* {*;}
+-dontobfuscate
