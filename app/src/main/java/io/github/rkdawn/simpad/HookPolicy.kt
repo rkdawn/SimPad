@@ -16,6 +16,11 @@ internal enum class AppTarget(val packageName: String) {
 }
 
 internal const val RULE_REVISION = "simpad-formal-three-points-v1"
+internal const val WECHAT_RULE_REVISION = "simpad-wechat-wrapper-target-v2"
+internal fun planRuleRevision(app: AppTarget): String =
+    if (app == AppTarget.WECHAT) WECHAT_RULE_REVISION else RULE_REVISION
+internal fun planRuleRevision(packageName: String): String =
+    if (packageName == AppTarget.WECHAT.packageName) WECHAT_RULE_REVISION else RULE_REVISION
 internal val PRIMITIVES = setOf("boolean", "byte", "char", "short", "int", "long", "float", "double", "void")
 
 internal fun isWeChatChatClassName(name: String): Boolean =
@@ -39,6 +44,7 @@ internal data class PlanDescriptor(
     val methods: Map<String, String>,
     val cacheField: String? = null,
     val monitorField: String? = null,
+    val hookTarget: String? = null,
 ) {
     fun validate() {
         val expected = when (app) {
@@ -52,27 +58,30 @@ internal data class PlanDescriptor(
         if (app == AppTarget.WECHAT) {
             require(cacheField != null && cacheField.endsWith(":Ljava/lang/Boolean;")) { "Missing WeChat Boolean cache" }
             require(monitorField == null || monitorField.endsWith(":Ljava/lang/Object;")) { "Invalid WeChat monitor" }
-        } else require(cacheField == null && monitorField == null) { "Unexpected cache fields" }
+            require(hookTarget == null || hookTarget in setOf("inner", "tablet")) { "Invalid WeChat hook target" }
+        } else require(cacheField == null && monitorField == null && hookTarget == null) { "Unexpected cache fields" }
     }
 
     fun encode(): Map<String, String> {
         validate()
         return buildMap {
-            put("revision", RULE_REVISION)
+            put("revision", planRuleRevision(app))
             put("app", app.name)
             methods.forEach { (role, descriptor) -> put("method.$role", descriptor) }
             cacheField?.let { put("cacheField", it) }
             monitorField?.let { put("monitorField", it) }
+            if (app == AppTarget.WECHAT) put("hookTarget", hookTarget ?: "inner")
         }
     }
 
     companion object {
         fun decode(app: AppTarget, values: Map<String, String>): PlanDescriptor {
-            require(values["revision"] == RULE_REVISION && values["app"] == app.name) { "Cache rule changed" }
-            require(values.size <= 8 && values.values.all { it.length <= 2048 }) { "Oversized cache record" }
-            require(values.keys.all { it in setOf("revision", "app", "cacheField", "monitorField") || it.startsWith("method.") }) { "Unknown cache key" }
+            require(values["revision"] == planRuleRevision(app) && values["app"] == app.name) { "Cache rule changed" }
+            require(values.size <= 9 && values.values.all { it.length <= 2048 }) { "Oversized cache record" }
+            require(values.keys.all { it in setOf("revision", "app", "cacheField", "monitorField", "hookTarget") || it.startsWith("method.") }) { "Unknown cache key" }
+            require(app != AppTarget.WECHAT || values["hookTarget"] != null) { "WeChat cache has no hook target" }
             return PlanDescriptor(app, values.filterKeys { it.startsWith("method.") }.mapKeys { it.key.removePrefix("method.") },
-                values["cacheField"], values["monitorField"]).also { it.validate() }
+                values["cacheField"], values["monitorField"], values["hookTarget"]).also { it.validate() }
         }
     }
 }

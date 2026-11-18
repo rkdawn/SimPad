@@ -65,7 +65,8 @@ internal object WeChatSelector {
                         visibility in it.invokes && it.invokes.count { called -> called == outer.descriptor } == 1
                 }.forEach { login ->
                     plans += PlanDescriptor(AppTarget.WECHAT, linkedMapOf("inner" to inner.descriptor,
-                        "tablet" to outer.descriptor, "login" to login.descriptor), cache.descriptor, monitor)
+                        "tablet" to outer.descriptor, "login" to login.descriptor), cache.descriptor, monitor,
+                        profile?.deviceHookRole)
                 }
             }
         }

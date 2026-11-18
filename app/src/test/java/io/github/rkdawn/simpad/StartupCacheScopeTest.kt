@@ -29,6 +29,13 @@ class StartupCacheScopeTest {
         assertFalse(scope.contains(BuildConfig.VERSION_NAME))
         assertNotEquals(scope, methodIdentityScope(pkg, version, "rule-B"))
     }
+    @Test fun wechatWrapperRevisionInvalidatesOnlyWechatPlanScope() {
+        val hostVersion = "3200:8.0.80:100"
+        assertNotEquals(methodIdentityScope(pkg, hostVersion, RULE_REVISION), methodIdentityScope(pkg, hostVersion, WECHAT_RULE_REVISION))
+        assertEquals(methodIdentityScope(AppTarget.DINGTALK.packageName, hostVersion, RULE_REVISION),
+            methodIdentityScope(AppTarget.DINGTALK.packageName, hostVersion, planRuleRevision(AppTarget.DINGTALK.packageName)))
+        assertEquals(methodIdentityScope(pkg, hostVersion, WECHAT_RULE_REVISION), methodIdentityScope(pkg, hostVersion))
+    }
     @Test fun digestScopeIsDeterministicAndIndependentOfSelectionRule() {
         assertEquals(installedDigestScope(pkg, version, listOf("b", "a"), "module-A"), installedDigestScope(pkg, version, listOf("a", "b"), "module-A"))
         assertEquals(listOf("simpad-apk-content-v1", "module-A", pkg, version, "a", "b"), installedDigestScope(pkg, version, listOf("a", "b"), "module-A"))

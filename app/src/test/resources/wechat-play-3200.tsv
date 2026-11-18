@@ -1,0 +1,444 @@
+FACT	inner	Lcom/tencent/mm/ui/vk;->b(Lpw5/w0;)Z	com.tencent.mm.ui.vk	9	pw5.w0	boolean
+STRING	inner	MicroMsg.UIUtils
+STRING	inner	inTabletEnv, isFoldableDevice, return false
+STRING	inner	inTabletEnv, isHWTablet, return true
+STRING	inner	inTabletEnv, isHonorTablet, return true
+STRING	inner	inTabletEnv, isMiTablet, return true
+STRING	inner	inTabletEnv, isVIVOTablet, return true
+STRING	inner	inTabletEnv, isOppoTablet, return true
+STRING	inner	tcl
+STRING	inner	ro.build.characteristics
+STRING	inner	tablet
+STRING	inner	inTabletEnv, isTCLTablet, return true
+STRING	inner	inTabletEnv, isP8Pad, return true
+STRING	inner	eebbk
+STRING	inner	X2
+STRING	inner	A2
+STRING	inner	inTabletEnv, widthDp:%s >= %s, return true
+STRING	inner	inTabletEnv, no tablet condition matched, return false
+STRING	inner	inTabletEnv, isEebbkPad, return true
+CALL	inner	Ljava/lang/Boolean;->booleanValue()Z
+CALL	inner	Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+CALL	inner	Landroid/content/res/Resources;->getConfiguration()Landroid/content/res/Configuration;
+CALL	inner	Lcom/tencent/mm/ui/vk;->R()Z
+CALL	inner	Lcom/tencent/mars/xlog/Log;->i(Ljava/lang/String;Ljava/lang/String;)V
+CALL	inner	Luh5/b;->c()Z
+CALL	inner	Lcom/tencent/mm/ui/vk;->S()Z
+CALL	inner	Loq/d0;->b()Z
+CALL	inner	Lcom/tencent/mm/ui/vk;->U()Z
+CALL	inner	Luh5/d;->f()Z
+CALL	inner	Lcom/tencent/mm/ui/vk;->Y()Z
+CALL	inner	Loq/d0;->h()Z
+CALL	inner	Lcom/tencent/mm/ui/vk;->l0()Z
+CALL	inner	Loq/d0;->e()Z
+CALL	inner	Loq/d0;->d()Z
+CALL	inner	Lcom/tencent/mm/ui/vk;->c0()Z
+CALL	inner	Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+CALL	inner	Lfq/w1;->a(Ljava/lang/String;)Ljava/lang/String;
+CALL	inner	Lcom/tencent/mm/sdk/platformtools/c9;->C0(Ljava/lang/String;Ljava/lang/String;)Z
+CALL	inner	Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+CALL	inner	Lcom/tencent/mm/ui/n9;->a()Z
+CALL	inner	Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+CALL	inner	Lpw5/p1;->b()Ljava/lang/Object;
+CALL	inner	Ljava/lang/Integer;->intValue()I
+CALL	inner	Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+CALL	inner	Lcom/tencent/mars/xlog/Log;->i(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/Object;)V
+FIELD	inner	Lcom/tencent/mm/sdk/platformtools/ga;->a:Z	com.tencent.mm.sdk.platformtools.ga	boolean	9	true	false
+FIELD	inner	Lcom/tencent/mm/ui/vk;->g:Ljava/lang/Boolean;	com.tencent.mm.ui.vk	java.lang.Boolean	73	true	false
+FIELD	inner	Lcom/tencent/mm/sdk/platformtools/y2;->a:Landroid/content/Context;	com.tencent.mm.sdk.platformtools.y2	android.content.Context	9	true	false
+FIELD	inner	Landroid/content/res/Configuration;->smallestScreenWidthDp:I	android.content.res.Configuration	int	0	true	false
+FIELD	inner	Lcom/tencent/mm/ui/vk;->h:I	com.tencent.mm.ui.vk	int	9	false	true
+FIELD	inner	Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;	java.lang.Boolean	java.lang.Boolean	8	true	false
+FIELD	inner	Lcom/tencent/mm/ui/vk;->g:Ljava/lang/Boolean;	com.tencent.mm.ui.vk	java.lang.Boolean	73	false	true
+FIELD	inner	Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;	java.lang.Boolean	java.lang.Boolean	8	true	false
+FIELD	inner	Loq/d0;->r:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	true	false
+FIELD	inner	Loq/d0;->a:Ljava/lang/String;	oq.d0	java.lang.String	25	true	false
+FIELD	inner	Loq/d0;->r:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	false	true
+FIELD	inner	Lcom/tencent/mm/ui/vk;->v:Ljava/lang/Boolean;	com.tencent.mm.ui.vk	java.lang.Boolean	9	true	false
+FIELD	inner	Lcom/tencent/mm/ui/vk;->v:Ljava/lang/Boolean;	com.tencent.mm.ui.vk	java.lang.Boolean	9	false	true
+FIELD	inner	Loq/d0;->o:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	true	false
+FIELD	inner	Loq/d0;->o:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	false	true
+FIELD	inner	Landroid/os/Build;->MODEL:Ljava/lang/String;	android.os.Build	java.lang.String	8	true	false
+OP	inner	SGET_BOOLEAN
+OP	inner	CONST_4
+OP	inner	IF_EQZ
+OP	inner	RETURN
+OP	inner	SGET_OBJECT
+OP	inner	IF_EQZ
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	RETURN
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	IGET
+OP	inner	SPUT
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	CONST_4
+OP	inner	CONST_STRING
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_NEZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	SGET_OBJECT
+OP	inner	IF_NEZ
+OP	inner	SGET_OBJECT
+OP	inner	CONST_STRING_JUMBO
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	SGET_OBJECT
+OP	inner	GOTO
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	SGET_OBJECT
+OP	inner	IF_NEZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	CONST_STRING_JUMBO
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	SGET_OBJECT
+OP	inner	CONST_STRING
+OP	inner	IF_NEZ
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	SGET_OBJECT
+OP	inner	GOTO
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	MOVE
+OP	inner	GOTO
+OP	inner	MOVE
+OP	inner	IF_NEZ
+OP	inner	SGET_OBJECT
+OP	inner	IF_NEZ
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	SGET_OBJECT
+OP	inner	GOTO
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	CONST_STRING
+OP	inner	SGET_OBJECT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	IF_EQZ
+OP	inner	MOVE
+OP	inner	GOTO
+OP	inner	MOVE
+OP	inner	IF_EQZ
+OP	inner	GOTO
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	CHECK_CAST
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT
+OP	inner	CONST_16
+OP	inner	IF_LT
+OP	inner	INVOKE_VIRTUAL
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	INVOKE_STATIC
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	FILLED_NEW_ARRAY
+OP	inner	MOVE_RESULT_OBJECT
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+OP	inner	CONST_STRING
+OP	inner	INVOKE_STATIC
+OP	inner	SGET_OBJECT
+OP	inner	SPUT_OBJECT
+OP	inner	RETURN
+FACT	wrapper	Lcom/tencent/mm/ui/vk;->C()Z	com.tencent.mm.ui.vk	9		boolean
+CALL	wrapper	Lcom/tencent/mm/ui/vk$$b;-><init>()V
+CALL	wrapper	Lpw5/w0;-><init>(Lpw5/v0;)V
+CALL	wrapper	Ljava/lang/Boolean;->booleanValue()Z
+CALL	wrapper	Lcom/tencent/mm/ui/vk;->b(Lpw5/w0;)Z
+FIELD	wrapper	Lcom/tencent/mm/sdk/platformtools/ga;->a:Z	com.tencent.mm.sdk.platformtools.ga	boolean	9	true	false
+FIELD	wrapper	Lcom/tencent/mm/ui/vk;->g:Ljava/lang/Boolean;	com.tencent.mm.ui.vk	java.lang.Boolean	73	true	false
+FIELD	wrapper	Lcom/tencent/mm/ui/vk;->f:Ljava/lang/Object;	com.tencent.mm.ui.vk	java.lang.Object	25	true	false
+OP	wrapper	NEW_INSTANCE
+OP	wrapper	INVOKE_DIRECT
+OP	wrapper	NEW_INSTANCE
+OP	wrapper	INVOKE_DIRECT
+OP	wrapper	SGET_BOOLEAN
+OP	wrapper	IF_EQZ
+OP	wrapper	CONST_4
+OP	wrapper	GOTO
+OP	wrapper	SGET_OBJECT
+OP	wrapper	IF_EQZ
+OP	wrapper	INVOKE_VIRTUAL
+OP	wrapper	MOVE_RESULT
+OP	wrapper	GOTO
+OP	wrapper	SGET_OBJECT
+OP	wrapper	MONITOR_ENTER
+OP	wrapper	INVOKE_STATIC
+OP	wrapper	MOVE_RESULT
+OP	wrapper	MONITOR_EXIT
+OP	wrapper	MOVE
+OP	wrapper	RETURN
+OP	wrapper	MOVE_EXCEPTION
+OP	wrapper	MONITOR_EXIT
+OP	wrapper	THROW
+FACT	login	Lwc1/h0;->a(Landroid/view/View;Landroidx/lifecycle/y;)V	wc1.h0	25	android.view.View,androidx.lifecycle.y	void
+STRING	login	loginAsOtherDeviceBtn
+STRING	login	com/tencent/mm/plugin/account/model/LoginUtil$Companion
+STRING	login	updateLoginAsExdevice
+STRING	login	(Landroid/view/View;Landroidx/lifecycle/LifecycleOwner;)V
+STRING	login	android/view/View_EXEC_
+STRING	login	setVisibility
+STRING	login	(I)V
+STRING	login	BRAND
+STRING	login	getDefault(...)
+STRING	login	toLowerCase(...)
+STRING	login	aspad
+CALL	login	Lkotlin/jvm/internal/p;->h(Ljava/lang/Object;Ljava/lang/String;)V
+CALL	login	Lcom/tencent/mm/ui/vk;->C()Z
+CALL	login	Lcom/tencent/mm/ui/vk;->R()Z
+CALL	login	Ljava/util/ArrayList;-><init>()V
+CALL	login	Ljava/lang/Integer;->valueOf(I)Ljava/lang/Integer;
+CALL	login	Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+CALL	login	Ljava/util/Collections;->reverse(Ljava/util/List;)V
+CALL	login	Ljava/util/ArrayList;->toArray()[Ljava/lang/Object;
+CALL	login	Lvo0/a;->d(Ljava/lang/Object;[Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+CALL	login	Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+CALL	login	Ljava/lang/Integer;->intValue()I
+CALL	login	Landroid/view/View;->setVisibility(I)V
+CALL	login	Lvo0/a;->f(Ljava/lang/Object;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+CALL	login	Lkotlin/jvm/internal/p;->g(Ljava/lang/Object;Ljava/lang/String;)V
+CALL	login	Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+CALL	login	Ljava/lang/String;->toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+CALL	login	Ljava/lang/StringBuilder;-><init>()V
+CALL	login	Lfq/w0;->m()Ljava/lang/String;
+CALL	login	Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+CALL	login	Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+CALL	login	Lwc1/f0;-><init>(Landroid/view/View;)V
+CALL	login	Lcom/tencent/mm/sdk/coroutines/LifecycleScope;-><init>(Ljava/lang/String;Landroidx/lifecycle/y;I)V
+CALL	login	Lc61/h1;-><init>(Lc61/i1;Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)V
+CALL	login	Lsg5/i;->a(Lsg5/i;Lkotlinx/coroutines/a1;Lob6/p;ILjava/lang/Object;)Lkotlinx/coroutines/r2;
+FIELD	login	Lwo0/c;->a:Ljava/lang/ThreadLocal;	wo0.c	java.lang.ThreadLocal	25	true	false
+FIELD	login	Landroid/os/Build;->BRAND:Ljava/lang/String;	android.os.Build	java.lang.String	8	true	false
+FIELD	login	Landroid/os/Build;->CPU_ABI:Ljava/lang/String;	android.os.Build	java.lang.String	8	true	false
+OP	login	CONST_STRING
+OP	login	INVOKE_STATIC
+OP	login	INVOKE_STATIC
+OP	login	MOVE_RESULT
+OP	login	IF_NEZ
+OP	login	INVOKE_STATIC
+OP	login	MOVE_RESULT
+OP	login	IF_EQZ
+OP	login	GOTO
+OP	login	NEW_INSTANCE
+OP	login	INVOKE_DIRECT
+OP	login	SGET_OBJECT
+OP	login	CONST_4
+OP	login	INVOKE_STATIC
+OP	login	MOVE_RESULT_OBJECT
+OP	login	INVOKE_VIRTUAL
+OP	login	INVOKE_STATIC
+OP	login	INVOKE_VIRTUAL
+OP	login	MOVE_RESULT_OBJECT
+OP	login	CONST_STRING
+OP	login	CONST_STRING_JUMBO
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	MOVE_OBJECT
+OP	login	INVOKE_STATIC_RANGE
+OP	login	INVOKE_VIRTUAL
+OP	login	MOVE_RESULT_OBJECT
+OP	login	CHECK_CAST
+OP	login	INVOKE_VIRTUAL
+OP	login	MOVE_RESULT
+OP	login	INVOKE_VIRTUAL
+OP	login	CONST_STRING
+OP	login	CONST_STRING_JUMBO
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	CONST_STRING
+OP	login	MOVE_OBJECT
+OP	login	INVOKE_STATIC_RANGE
+OP	login	GOTO
+OP	login	SGET_OBJECT
+OP	login	CONST_STRING
+OP	login	INVOKE_STATIC
+OP	login	INVOKE_STATIC
+OP	login	MOVE_RESULT_OBJECT
+OP	login	CONST_STRING
+OP	login	INVOKE_STATIC
+OP	login	INVOKE_VIRTUAL
+OP	login	MOVE_RESULT_OBJECT
+OP	login	CONST_STRING_JUMBO
+OP	login	INVOKE_STATIC
+OP	login	NEW_INSTANCE
+OP	login	INVOKE_DIRECT
+OP	login	INVOKE_STATIC
+OP	login	MOVE_RESULT_OBJECT
+OP	login	INVOKE_VIRTUAL
+OP	login	SGET_OBJECT
+OP	login	INVOKE_VIRTUAL
+OP	login	INVOKE_VIRTUAL
+OP	login	MOVE_RESULT_OBJECT
+OP	login	NEW_INSTANCE
+OP	login	INVOKE_DIRECT
+OP	login	NEW_INSTANCE
+OP	login	CONST_STRING
+OP	login	CONST_4
+OP	login	INVOKE_DIRECT
+OP	login	NEW_INSTANCE
+OP	login	CONST_4
+OP	login	INVOKE_DIRECT
+OP	login	INVOKE_STATIC
+OP	login	RETURN_VOID
+FACT	modelGate	Lcom/tencent/mm/ui/n9;->a()Z	com.tencent.mm.ui.n9	9		boolean
+STRING	modelGate	lenovo
+STRING	modelGate	Lenovo TB-9707F
+CALL	modelGate	Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+CALL	modelGate	Ljava/lang/Boolean;->booleanValue()Z
+CALL	modelGate	Ljava/lang/String;->equalsIgnoreCase(Ljava/lang/String;)Z
+FIELD	modelGate	Loq/d0;->m:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	true	false
+FIELD	modelGate	Loq/d0;->a:Ljava/lang/String;	oq.d0	java.lang.String	25	true	false
+FIELD	modelGate	Ljava/lang/Boolean;->TRUE:Ljava/lang/Boolean;	java.lang.Boolean	java.lang.Boolean	8	true	false
+FIELD	modelGate	Ljava/lang/Boolean;->FALSE:Ljava/lang/Boolean;	java.lang.Boolean	java.lang.Boolean	8	true	false
+FIELD	modelGate	Loq/d0;->m:Ljava/lang/Boolean;	oq.d0	java.lang.Boolean	9	false	true
+FIELD	modelGate	Landroid/os/Build;->MODEL:Ljava/lang/String;	android.os.Build	java.lang.String	8	true	false
+OP	modelGate	SGET_OBJECT
+OP	modelGate	IF_NEZ
+OP	modelGate	SGET_OBJECT
+OP	modelGate	CONST_STRING
+OP	modelGate	INVOKE_VIRTUAL
+OP	modelGate	MOVE_RESULT
+OP	modelGate	IF_EQZ
+OP	modelGate	SGET_OBJECT
+OP	modelGate	GOTO
+OP	modelGate	SGET_OBJECT
+OP	modelGate	SPUT_OBJECT
+OP	modelGate	SGET_OBJECT
+OP	modelGate	INVOKE_VIRTUAL
+OP	modelGate	MOVE_RESULT
+OP	modelGate	IF_EQZ
+OP	modelGate	CONST_STRING
+OP	modelGate	SGET_OBJECT
+OP	modelGate	INVOKE_VIRTUAL
+OP	modelGate	MOVE_RESULT
+OP	modelGate	IF_EQZ
+OP	modelGate	CONST_4
+OP	modelGate	RETURN
+OP	modelGate	CONST_4
+OP	modelGate	RETURN
