@@ -41,7 +41,7 @@
 
 ## 开发与许可
 
-[构建说明](docs/BUILD.md) · [技术说明](docs/PERFORMANCE.md) · [微信兼容](docs/WECHAT-COMPATIBILITY.md) · [集成同步](docs/INTEGRATION-SYNC.md) · [版本规则](VERSIONING.md)
+[构建说明](docs/BUILD.md) · [版本说明](docs/RELEASE-NOTES.md) · [技术说明](docs/PERFORMANCE.md) · [微信兼容](docs/WECHAT-COMPATIBILITY.md) · [集成同步](docs/INTEGRATION-SYNC.md) · [版本规则](VERSIONING.md)
 
 本项目采用 [GPL-3.0-only](LICENSE)。第三方组件许可与来源详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
