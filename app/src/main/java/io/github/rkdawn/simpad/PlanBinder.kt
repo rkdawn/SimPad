@@ -18,9 +18,9 @@ internal object PlanBinder {
             )
             AppTarget.WECHAT -> {
                 val callbacks = WeChatCallbacks(chatCall = WeChatChatDetector::isChat)
-                // B and the Boolean field remain locator metadata, not hooked/shared state.
+                // The selected device target is metadata-bound: current profiles hook the cached wrapper result.
                 listOf(
-                    HookSpec("wechat_device", methods.getValue("inner"), HookCallback(callbacks::tablet)),
+                    HookSpec("wechat_device", methods.getValue(plan.hookTarget ?: "inner"), HookCallback(callbacks::tablet)),
                     HookSpec("wechat_login", methods.getValue("login"), HookCallback(callbacks::login)),
                 )
             }

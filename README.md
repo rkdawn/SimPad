@@ -23,15 +23,25 @@
 
 ## 安装
 
-1. 从 [Releases](https://github.com/rkdawn/SimPad/releases/latest) 下载唯一正式安装包 **`SimPad-1.0.0.apk`**。
+1. 从 [Releases](https://github.com/rkdawn/SimPad/releases/latest) 下载当前正式安装包。
 2. 安装模块，在框架中启用并选择目标应用作用域。
 3. 结束目标应用后重新打开，使用其平板登录入口。
 
 具体适配情况取决于应用版本及其多设备登录规则。不要同时启用其他修改平板身份的模块。
 
+## 微信兼容
+
+| 微信渠道与版本 | SimPad 1.0.2 适配 |
+|---|---|
+| Google Play 8.0.79／3183 | 保留原设备判断与登录策略 |
+| Google Play 8.0.80／3200 | 修复定位与外层结果缓存绕过，实机记录已进入设备登录页 |
+| 其他渠道或构建 | 未明确验证，不保证自动兼容 |
+
+逐版变化、验证范围及升级方式见 [微信版本兼容说明](docs/WECHAT-COMPATIBILITY.md)。进入登录页不代表所有账号及长期登录保持已验证。
+
 ## 开发与许可
 
-[构建说明](docs/BUILD.md) · [技术说明](docs/PERFORMANCE.md) · [版本规则](VERSIONING.md)
+[构建说明](docs/BUILD.md) · [技术说明](docs/PERFORMANCE.md) · [微信兼容](docs/WECHAT-COMPATIBILITY.md) · [集成同步](docs/INTEGRATION-SYNC.md) · [版本规则](VERSIONING.md)
 
 本项目采用 [GPL-3.0-only](LICENSE)。第三方组件许可与来源详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 

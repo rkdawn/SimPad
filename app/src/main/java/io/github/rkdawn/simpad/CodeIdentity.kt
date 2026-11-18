@@ -58,7 +58,7 @@ internal data class CodeIdentity(val fingerprint: String, val files: List<FileSt
 }
 
 /** Selection changes invalidate plans; display-only module versions do not change host code. */
-internal fun methodIdentityScope(packageName: String, installedVersion: String, revision: String = RULE_REVISION): List<String> =
+internal fun methodIdentityScope(packageName: String, installedVersion: String, revision: String = planRuleRevision(packageName)): List<String> =
     listOf("simpad-code-plan-v1", revision, packageName, installedVersion)
 
 /** Keep a fresh content check on module upgrades; rule-only changes do not change file bytes. */

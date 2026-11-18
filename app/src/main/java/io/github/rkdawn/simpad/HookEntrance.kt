@@ -87,7 +87,10 @@ class HookEntrance : XposedModule() {
         }
         val selected = checkNotNull(plan)
         val boundSpecs = checkNotNull(specs)
-        if (app == AppTarget.WECHAT) report(Log.INFO, "WECHAT_PLAN origin=simpad device=${selected.methods.getValue("inner")} referenceWrapper=${selected.methods.getValue("tablet")} login=${selected.methods.getValue("login")} hookIds=${boundSpecs.joinToString(",") { it.id }} cacheWrite=false")
+        if (app == AppTarget.WECHAT) {
+            val hookRole = selected.hookTarget ?: "inner"
+            report(Log.INFO, "WECHAT_PLAN origin=simpad deviceRole=$hookRole device=${selected.methods.getValue(hookRole)} referenceWrapper=${selected.methods.getValue("tablet")} login=${selected.methods.getValue("login")} hookIds=${boundSpecs.joinToString(",") { it.id }} cacheWrite=false")
+        }
         val registrar = HookRegistrar { method, callback ->
             val handle = hook(method).intercept { chain ->
                 callback.intercept(object : HookCall {
