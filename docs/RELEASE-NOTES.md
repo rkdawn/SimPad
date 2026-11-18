@@ -7,7 +7,7 @@
 - 本机微信 8.0.80 新日志记录 Hook 已安装并进入 `LoginAsExDeviceUI`。完整登录、帐号保持及其它版本未据此宣称全部通过。
 - 255 项 JVM 回归、39 项 APK 检查及 13 项 APK 验证器测试通过；Lint 0 错误、4 项既有警告。
 - 应用包名与签名不变。安装后彻底退出微信再重新打开。
-- 逐版本兼容范围见 `WECHAT-COMPATIBILITY.md`；实机新日志见 `D:\ClaudeCode\SimPad\outputs\log-analysis\20261119-005327\report.md`。
+- 逐版本兼容范围见 `WECHAT-COMPATIBILITY.md`；新日志报告见 `../outputs/log-analysis/20261119-005327/report.md`。
 
 ## GitHub 发行附件
 
