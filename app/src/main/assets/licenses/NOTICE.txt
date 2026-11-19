@@ -1,4 +1,4 @@
-SimPad 1.0.2
+SimPad 1.10
 GPL-3.0-only. The complete GPL, Apache-2.0 and LGPL license texts accompany this APK.
 
 This module simulates a tablet identity inside WeChat, DingTalk and WeCom on a phone.
