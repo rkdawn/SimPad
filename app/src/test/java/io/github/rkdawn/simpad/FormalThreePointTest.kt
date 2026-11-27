@@ -43,6 +43,18 @@ class FormalThreePointTest {
         assertEquals(method("decision"), specs[0].method); assertEquals(method("login"), specs[1].method)
         assertFalse(specs.any { it.method == method("wrapper") })
     }
+    @Test fun bindAddsHistoryToBothFreshAndCachedModernPlansOnly() {
+        val loader = javaClass.classLoader!!
+        val fresh = plan().copy(hookTarget = "tablet")
+        for (candidate in listOf(fresh, PlanDescriptor.decode(AppTarget.WECHAT, fresh.encode()))) {
+            for (code in listOf(3200L, 3202L)) {
+                val specs = PlanBinder.bind(candidate, loader, WeChatHostVersion(code, "8.0.80"))
+                assertEquals(listOf("wechat_device", "wechat_login", "wechat_history_login"), specs.map { it.id })
+                assertEquals("Lcom/tencent/mm/plugin/account/ui/LoginHistoryUI;->initView()V", DexMethod(specs.last().method).serialize())
+            }
+            assertEquals(2, PlanBinder.bind(candidate, loader, WeChatHostVersion(3183, "8.0.79")).size)
+        }
+    }
     @Test fun actualBoundCOverridesReturnWithoutChangingOriginalCache() {
         TabletFixture.cache = null
         val spec = PlanBinder.bind(plan(), javaClass.classLoader!!).first()

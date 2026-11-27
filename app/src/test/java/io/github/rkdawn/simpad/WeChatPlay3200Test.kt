@@ -38,6 +38,24 @@ class WeChatPlay3200Test {
             assertTrue(error.message!!.endsWith("found 0"))
         }
     }
+    @Test fun play3202SelectsTheSameValidatedGraphWithItsOwnProfile() {
+        val newer = WeChatHostVersion(3202, "8.0.80")
+        val profile = requireNotNull(WeChatProfiles.forVersion(newer))
+        assertEquals("play-8.0.80-3202", profile.id)
+        val plan = select(v = newer)
+        assertEquals(expected, plan.methods); assertEquals(cache, plan.cacheField); assertEquals("tablet", plan.hookTarget)
+        rejects { select(changed("login") { it.copy(invokes = emptyList()) }, newer) }
+    }
+    @Test fun onlyExactPlay3200And3202ProfilesEnableHistoryLogin() {
+        for (code in listOf(3200L, 3202L)) {
+            val history = requireNotNull(WeChatProfiles.forVersion(WeChatHostVersion(code, "8.0.80"))?.history)
+            assertEquals("Lcom/tencent/mm/plugin/account/ui/LoginHistoryUI;->initView()V", history.initializer)
+            assertEquals(0x7f0a4363, history.buttonId)
+        }
+        for (other in listOf(WeChatHostVersion(3183, "8.0.79"), WeChatHostVersion(3201, "8.0.80"), WeChatHostVersion(3202, "8.0.81"))) {
+            assertNull(WeChatProfiles.forVersion(other)?.history)
+        }
+    }
     @Test fun removingOnlyTheTclAuxiliaryFieldMakesGenericSelectionSucceed() {
         val selected = select(changed("inner") { it.copy(fields = it.fields.filterNot { use -> use.field.descriptor == auxiliary }) }, null)
         assertEquals(expected, selected.methods); assertEquals(cache, selected.cacheField)

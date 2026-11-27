@@ -9,7 +9,7 @@
 ## 微信适配
 
 - Google Play 微信 **8.0.79／3183**。
-- Google Play 微信 **8.0.80／3200**。
+- Google Play 微信 **8.0.80／3200、3202**。
 
 其他渠道和构建暂未验证。
 
@@ -20,7 +20,7 @@
 
 ## 安装
 
-1. 从 [Releases](https://github.com/rkdawn/SimPad/releases/latest) 下载 **SimPad-1.10.apk**。
+1. 从 [Releases](https://github.com/rkdawn/SimPad/releases/latest) 下载 **SimPad-1.20.apk**。
 2. 在模块框架中启用 SimPad，勾选目标应用作用域。
 3. 彻底结束目标应用后重新打开，使用平板登录入口。
 

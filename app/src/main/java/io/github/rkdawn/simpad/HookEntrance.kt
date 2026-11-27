@@ -55,6 +55,8 @@ class HookEntrance : XposedModule() {
         val cachePrefix = if (app == AppTarget.WECHAT) "SimPad_startup_before_v1" else "SimPad_three_apps_v1"
         val cacheName = "${cachePrefix}_$processKey"
         val cache = PlanCache(context.getSharedPreferences(cacheName, Context.MODE_PRIVATE))
+        val version = if (app == AppTarget.WECHAT) WeChatHostVersion.fromInstalledIdentity(identity.version) else null
+        fun bind(plan: PlanDescriptor) = PlanBinder.bind(plan, loader, version) { report(Log.INFO, it) }
         var hit = false
         var bindNs = 0L
         var resolveNs = 0L
@@ -66,7 +68,7 @@ class HookEntrance : XposedModule() {
         var plan = cached
         var specs = cached?.let {
             val bindStart = System.nanoTime()
-            try { PlanBinder.bind(it, loader).also { hit = true } } catch (error: Exception) {
+            try { bind(it).also { hit = true } } catch (error: Exception) {
                 try { cache.invalidate() } catch (_: Exception) { }
                 report(Log.WARN, "CACHE_BIND_INVALID ${app.name}: ${error.javaClass.simpleName}")
                 null
@@ -77,12 +79,11 @@ class HookEntrance : XposedModule() {
             try {
                 System.loadLibrary("dexkit")
                 plan = DexKitBridge.create(loader, true).use {
-                    AppRuleResolver(it, if (app == AppTarget.WECHAT) WeChatHostVersion.fromInstalledIdentity(identity.version) else null,
-                        { message -> report(Log.INFO, message) }).resolve(app)
+                    AppRuleResolver(it, version, { message -> report(Log.INFO, message) }).resolve(app)
                 }
             } finally { resolveNs += System.nanoTime() - resolveStart }
             val bindStart = System.nanoTime()
-            try { specs = PlanBinder.bind(checkNotNull(plan), loader) }
+            try { specs = bind(checkNotNull(plan)) }
             finally { bindNs += System.nanoTime() - bindStart }
         }
         val selected = checkNotNull(plan)

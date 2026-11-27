@@ -5,7 +5,8 @@ import java.lang.reflect.Method
 import java.lang.reflect.Modifier
 
 internal object PlanBinder {
-    fun bind(plan: PlanDescriptor, loader: ClassLoader): List<HookSpec> {
+    fun bind(plan: PlanDescriptor, loader: ClassLoader, version: WeChatHostVersion? = null,
+             diagnostic: (String) -> Unit = {}): List<HookSpec> {
         plan.validate()
         val methods = plan.methods.mapValues { (_, descriptor) -> DexMethod(descriptor).getMethodInstance(loader) }
         validateMethods(plan.app, methods)
@@ -18,11 +19,21 @@ internal object PlanBinder {
             )
             AppTarget.WECHAT -> {
                 val callbacks = WeChatCallbacks(chatCall = WeChatChatDetector::isChat)
-                // The selected device target is metadata-bound: current profiles hook the cached wrapper result.
-                listOf(
-                    HookSpec("wechat_device", methods.getValue(plan.hookTarget ?: "inner"), HookCallback(callbacks::tablet)),
-                    HookSpec("wechat_login", methods.getValue("login"), HookCallback(callbacks::login)),
-                )
+                val history = WeChatProfiles.forVersion(version)?.history
+                buildList {
+                    add(HookSpec("wechat_device", methods.getValue(plan.hookTarget ?: "inner"), HookCallback(callbacks::tablet)))
+                    add(HookSpec("wechat_login", methods.getValue("login"), HookCallback { callbacks.login(it, history != null) }))
+                    if (history != null) {
+                        val init = DexMethod(history.initializer).getMethodInstance(loader)
+                        require(!Modifier.isStatic(init.modifiers) && init.parameterCount == 0 && init.returnType == Void.TYPE &&
+                            android.app.Activity::class.java.isAssignableFrom(init.declaringClass)) { "Unexpected history login initializer" }
+                        add(HookSpec("wechat_history_login", init, HookCallback { call ->
+                            callbacks.history(call, { receiver ->
+                                (receiver as? android.app.Activity)?.findViewById<android.view.View>(history.buttonId) as? android.widget.Button
+                            }, { (it as android.widget.Button).hasOnClickListeners() }, diagnostic)
+                        }))
+                    }
+                }
             }
         }
     }

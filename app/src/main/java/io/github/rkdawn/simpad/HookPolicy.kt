@@ -16,7 +16,7 @@ internal enum class AppTarget(val packageName: String) {
 }
 
 internal const val RULE_REVISION = "simpad-formal-three-points-v1"
-internal const val WECHAT_RULE_REVISION = "simpad-wechat-wrapper-target-v2"
+internal const val WECHAT_RULE_REVISION = "simpad-wechat-history-login-v3"
 internal fun planRuleRevision(app: AppTarget): String =
     if (app == AppTarget.WECHAT) WECHAT_RULE_REVISION else RULE_REVISION
 internal fun planRuleRevision(packageName: String): String =

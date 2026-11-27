@@ -32,6 +32,36 @@ class AppBehaviorTest {
         assertEquals("original", callbacks().login(call)); assertEquals(0, view.visibility); assertEquals(1, call.calls)
     }
     @Test fun invisibleViewIsNotForcedVisible() { val view = FakeView(4); callbacks().login(Call(listOf(view))); assertEquals(4, view.visibility) }
+    @Test fun modernLoginAlsoRevealsInvisibleViewAfterOriginal() {
+        val view = FakeView(4); callbacks().login(Call(listOf(view)), includeInvisible = true); assertEquals(0, view.visibility)
+    }
+    @Test fun historyRevealsActionableButtonOnlyAfterNativeInitializer() {
+        for (state in listOf(4, 8)) {
+            val view = FakeView(state); var wired = false
+            val call = Call { wired = true; "host result" }
+            val result = callbacks().history(call, { assertTrue(wired); view }, { wired }, {})
+            assertEquals("host result", result); assertEquals(1, call.calls); assertEquals(0, view.visibility)
+        }
+    }
+    @Test fun historyLeavesAbsentOrUnboundButtonAlone() {
+        val view = FakeView(8)
+        callbacks().history(Call(), { null }, { error("no button") }, {})
+        callbacks().history(Call(), { view }, { false }, {})
+        assertEquals(8, view.visibility)
+    }
+    @Test fun historyDoesNotRewriteVisibleButtonOrPropagateDiagnosticFailure() {
+        val view = FakeView(0)
+        val callbacks = WeChatCallbacks(visibility = { (it as FakeView).visibility }, show = { error("already visible") })
+        val call = Call { 17 }
+        assertEquals(17, callbacks.history(call, { view }, { true }, { error("logger") }))
+        assertEquals(1, call.calls)
+    }
+    @Test fun historyPreservesHostExceptionWithoutTouchingUi() {
+        val error = IllegalStateException("host"); val call = Call { throw error }
+        try { callbacks().history(call, { error("no lookup") }, { true }, {}); fail() }
+        catch (caught: IllegalStateException) { assertSame(error, caught) }
+        assertEquals(1, call.calls)
+    }
     @Test fun visibleViewIsUnchanged() { val view = FakeView(0); callbacks().login(Call(listOf(view))); assertEquals(0, view.visibility) }
     @Test fun absentViewKeepsOriginalOutcome() { assertEquals("original", callbacks().login(Call { "original" })) }
     @Test fun unrelatedFirstArgumentIsNotModified() { assertEquals("original", callbacks().login(Call(listOf("text")) { "original" })) }

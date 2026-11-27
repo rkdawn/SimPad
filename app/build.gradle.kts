@@ -20,9 +20,9 @@ android {
 
         targetSdk = 36
 
-        versionCode = 4
+        versionCode = 5
 
-        versionName = "1.10"
+        versionName = "1.20"
 
         ndk { abiFilters += listOf("arm64-v8a", "armeabi-v7a", "x86_64") }
 

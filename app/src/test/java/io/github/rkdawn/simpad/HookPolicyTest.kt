@@ -44,12 +44,13 @@ class HookPolicyTest {
         val hostVersion = "3200:8.0.80:1795004632090"
         assertEquals("simpad-code-plan-v1", methodIdentityScope(AppTarget.DINGTALK.packageName, hostVersion)[0])
         assertEquals(RULE_REVISION, methodIdentityScope(AppTarget.DINGTALK.packageName, hostVersion)[1])
-        assertEquals("simpad-wechat-wrapper-target-v2", methodIdentityScope(AppTarget.WECHAT.packageName, hostVersion)[1])
+        assertEquals("simpad-wechat-history-login-v3", methodIdentityScope(AppTarget.WECHAT.packageName, hostVersion)[1])
         assertEquals("inner", plan().encode()["hookTarget"])
     }
     @Test fun unknownWechatHookTargetIsRejected() { rejects { plan().copy(hookTarget = "login").validate() } }
     @Test fun nonWechatHookTargetIsRejected() { rejects { PlanDescriptor(AppTarget.DINGTALK, mapOf("device" to inner), hookTarget = "inner").validate() } }
     @Test fun staleWechatRuleRevisionInvalidatesCachedPlan() {
+        rejects { PlanDescriptor.decode(AppTarget.WECHAT, plan().encode() + ("revision" to "simpad-wechat-wrapper-target-v2")) }
         rejects { PlanDescriptor.decode(AppTarget.WECHAT, plan().encode() + ("revision" to RULE_REVISION)) }
     }
     @Test fun staleNonWechatRuleRevisionIsUnchanged() {
